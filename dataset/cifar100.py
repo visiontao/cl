@@ -1,14 +1,16 @@
 import os
 import numpy as np
 from PIL import Image
-from torchvision.datasets import CIFAR10
+import torchvision.transforms as transforms
+from torchvision.datasets import CIFAR100
 
-class MyCIFAR10(CIFAR10):
+
+class MyCIFAR100(CIFAR100):
     """
-    Overrides the CIFAR10 dataset to change the getitem function.
+    Overrides the CIFAR100 dataset to change the getitem function.
     """
     def __init__(self, root, train=True, transform=None, download=False):          
-        super(MyCIFAR10, self).__init__(root, train, transform, download)
+        super(MyCIFAR100, self).__init__(root, train, transform, download)
         self.transform = transform
         
     def __getitem__(self, index):
@@ -20,4 +22,4 @@ class MyCIFAR10(CIFAR10):
         if self.transform is not None:
             img = self.transform(img)
             
-        return img, target
+        return img, target     
